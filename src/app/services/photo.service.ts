@@ -5,13 +5,9 @@ import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
-class Photo {
-  data: any;
-}
 
 export class PhotoService {
   public photos: Photo[] = [];
-  currentImage: any;
 
   constructor(private camera: Camera, private storage: Storage) {}
 
@@ -27,7 +23,7 @@ export class PhotoService {
       imageData => {
         // Add new photo to gallery
         this.photos.unshift({
-          data: 'data:image/jpeg;base64' + ImageData
+          data: 'data:image/jpeg;base64,' + imageData
         });
 
         // Save all photos for later viewing
@@ -45,4 +41,8 @@ export class PhotoService {
       this.photos = photos || [];
     });
   }
+}
+
+class Photo {
+  data: any;
 }
